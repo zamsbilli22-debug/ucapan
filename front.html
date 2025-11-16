@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ucapan Ulang Tahun Amplop</title>
+<style>
+  body {
+    background-color: #f8c8d8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .amplop {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    cursor: pointer;
+    perspective: 600px;
+  }
+
+  /* Amplop tertutup */
+  .amplop .covers {
+    width: 100%;
+    height: 100%;
+    background: #f292b1;
+    border: 2px solid #c66;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    overflow: hidden;
+  }
+
+  /* Tutup lipatan amplop */
+  .amplop .covers::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0 0, 50% 50%, 100% 0);
+    background-color: #f56e8a;
+    border-bottom: 2px solid #c66;
+    border-right: 2px solid #c66;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.6s ease;
+    transform-origin: center bottom;
+  }
+
+  /* Hati di tengah amplop */
+  .amplop .seal {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 40px;
+    background-color: #e75478;
+    clip-path: polygon(
+      50% 100%, 93% 58%, 93% 33%, 79% 17%, 
+      61% 17%, 50% 30%, 39% 17%, 21% 17%, 
+      7% 33%, 7% 58%);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+    transition: opacity 0.5s;
+  }
+
+  /* Kertas ucapan */
+  .kertas {
+    position: absolute;
+    top: 15px; /* naikkan sedikit agar kertas lebih keluar dari amplop */
+    left: 50%;
+    width: 260px; /* tambah lebar sedikit */
+    height: 170px; /* tambah tinggi kertas */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-radius: 6px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* jika teks panjang scroll di vertical */
+    font-size: 14px; /* agar teks cukup membaca */
+    line-height: 1.4;
+    color: #333;
+    transform: translate(-50%, 120%);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+  }
+
+  /* Saat amplop terbuka */
+  .amplop.open .covers::before {
+    transform: rotateX(-120deg);
+  }
+  .amplop.open .kertas {
+    transform: translate(-50%, 10%);
+    opacity: 1;
+  }
+  .amplop.open .seal {
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="amplop" onclick="toggleAmplop()">
+  <div class="covers"></div>
+  <div class="seal"></div>
+  <div class="kertas">
+    <h2>happy sweet seventeen fallll!</h2>
+    <p>gomenne aku baru ucapin sekarang, intinya dari aku semoga kamu makin dewasa, nggak bosen belajarnyaaa, tetep semangat walauu tugas prakk ma laporan menghantui mu muluu heheee</p>
+    <p>KALO ADA APA APA CERITA YA, ada keluh kesah apa kek.</p>
+    <p>Pokokknyaa doa terbaik deh buat kamuuu, ituu ajaa yaa cil ka.</p>
+  </div>
+</div>
+
+<script>
+  function toggleAmplop() {
+    const amplop = document.querySelector('.amplop');
+    amplop.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
